@@ -1,0 +1,432 @@
+
+
+Exercise 1:
+
+
+class Student {
+    private String name;
+    private int id;
+    private double grade;
+    private Student next;
+    private Student prev;
+
+    public Student(String name, int id, double grade) {
+        this.name = name;
+        this.id = id;
+        this.grade = grade;
+        this.next = null;
+        this.prev = null;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getGrade() {
+        return grade;
+    }
+}
+
+public class StudentLinkedList {
+    private Student head;
+    private Student tail;
+
+    public void addStudent(Student student) {
+        if (head == null) {
+            head = student;
+            tail = student;
+        } else {
+            tail.next = student;
+            student.prev = tail;
+            tail = student;
+        }
+    }
+
+    public void printStudentsForward() {
+        Student current = head;
+        while (current != null) {
+            System.out.println("Name: " + current.getName());
+            System.out.println("ID: " + current.getId());
+            System.out.println("Grade: " + current.getGrade());
+            System.out.println();
+            current = current.next;
+        }
+    }
+
+    public void printStudentsInReverse() {
+        Student current = tail;
+        while (current != null) {
+            System.out.println("Name: " + current.getName());
+            System.out.println("ID: " + current.getId());
+            System.out.println("Grade: " + current.getGrade());
+            System.out.println();
+            current = current.prev;
+        }
+    }
+
+    public static void main(String[] args) {
+        StudentLinkedList studentList = new StudentLinkedList();
+
+        // Create Student objects and add them to the linked list
+        studentList.addStudent(new Student("John", 1001, 85.5));
+        studentList.addStudent(new Student("Alice", 1002, 92.0));
+        studentList.addStudent(new Student("Mike", 1003, 78.8));
+        studentList.addStudent(new Student("Sarah", 1004, 95.2));
+
+        // Print students forward
+        System.out.println("Students in Forward Order:");
+        studentList.printStudentsForward();
+
+        // Print students in reverse
+        System.out.println("Students in Reverse Order:");
+        studentList.printStudentsInReverse();
+    }
+}
+
+
+
+Exercise:2 
+
+
+class Book {
+    private String title;
+    private String author;
+    private String isbn;
+
+    public Book(String title, String author, String isbn) {
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+}
+
+public class BookStack {
+    private Stack<Book> books;
+
+    public BookStack() {
+        books = new Stack<>();
+    }
+public void push(Book book) {
+        books.push(book);
+    }
+
+    public Book pop() {
+        if (!books.isEmpty()) {
+            return books.pop();
+        }
+        return null;
+    }
+
+    public boolean isEmpty() {
+        return books.isEmpty();
+    }
+
+    public void walkOverStack() {
+        Stack<Book> tempStack = new Stack<>();
+        while (!books.isEmpty()) {
+            Book book = books.pop();
+            System.out.println("Title: " + book.getTitle());
+            tempStack.push(book);
+        }
+        // Restore the original order of books in the stack
+        while (!tempStack.isEmpty()) {
+            books.push(tempStack.pop());
+        }
+    }
+public static void main(String[] args) {
+        // Creating the Book objects
+        Book book1 = new Book("Book 1", "Author 1", "ISBN 1");
+        Book book2 = new Book("Book 2", "Author 2", "ISBN 2");
+        Book book3 = new Book("Book 3", "Author 3", "ISBN 3");
+        Book book4 = new Book("Book 4", "Author 4", "ISBN 4");
+        Book book5 = new Book("Book 5", "Author 5", "ISBN 5");
+        Book book6 = new Book("Book 6", "Author 6", "ISBN 6");
+        Book book7 = new Book("Book 7", "Author 7", "ISBN 7");
+        Book book8 = new Book("Book 8", "Author 8", "ISBN 8");
+        Book book9 = new Book("Book 9", "Author 9", "ISBN 9");
+        Book book10 = new Book("Book 10", "Author 10", "ISBN 10");
+
+        // Creating the BookStack and pushing the books onto it
+        BookStack bookStack = new BookStack();
+        bookStack.push(book1);
+        bookStack.push(book2);
+        bookStack.push(book3);
+        bookStack.push(book4);
+        bookStack.push(book5);
+        bookStack.push(book6);
+        bookStack.push(book7);
+        bookStack.push(book8);
+        bookStack.push(book9);
+        bookStack.push(book10);
+
+        // Walking over the stack and reporting the titles of each book
+        bookStack.walkOverStack();
+    }
+}
+
+
+
+Exercise: 3
+
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+class Patient {
+    private String name;
+    private int age;
+    private String ailment;
+
+    public Patient(String name, int age, String ailment) {
+        this.name = name;
+        this.age = age;
+        this.ailment = ailment;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public int getAge() {
+        return age;
+    }
+
+    public String getAilment() {
+        return ailment;
+    }
+}
+
+public class PatientQueue {
+    public static void main(String[] args) {
+        // Create 10 Patient objects
+        Patient patient1 = new Patient("John", 30, "Fever");
+        Patient patient2 = new Patient("Alice", 25, "Headache");
+        Patient patient3 = new Patient("Mike", 40, "Injury");
+        Patient patient4 = new Patient("Sarah", 28, "Cold");
+        Patient patient5 = new Patient("David", 50, "Back pain");
+        Patient patient6 = new Patient("Emily", 35, "Allergy");
+        Patient patient7 = new Patient("Alex", 22, "Stomach ache");
+        Patient patient8 = new Patient("Julia", 27, "Sprain");
+        Patient patient9 = new Patient("Ryan", 33, "Flu");
+        Patient patient10 = new Patient("Linda", 45, "Migraine");
+
+        // Create a queue to store the patients
+        Queue<Patient> patientQueue = new LinkedList<>();
+// Add patients to the queue
+        patientQueue.add(patient1);
+        patientQueue.add(patient2);
+        patientQueue.add(patient3);
+        patientQueue.add(patient4);
+        patientQueue.add(patient5);
+        patientQueue.add(patient6);
+        patientQueue.add(patient7);
+        patientQueue.add(patient8);
+        patientQueue.add(patient9);
+        patientQueue.add(patient10);
+
+        // Loop to iterate over the queue and print out the details of each patient
+        System.out.println("Details of Each Athlete:");
+        for (Patient patient : patientQueue) {
+            System.out.println("Name: " + patient.getName());
+            System.out.println("Age: " + patient.getAge());
+            System.out.println("Ailment: " + patient.getAilment());
+            System.out.println();
+        }
+// Ensure the queue remains unchanged at the end
+        System.out.println("Patients still in the Queue:");
+        for (Patient patient : patientQueue) {
+            System.out.println("Name: " + patient.getName());
+            System.out.println("Age: " + patient.getAge());
+            System.out.println("Ailment: " + patient.getAilment());
+            System.out.println();
+        }
+    }
+}
+
+
+
+Exercise: 4
+
+
+class Student {
+    private String name;
+    private int age;
+    private int grade;
+
+    public Student(String name, int age, int grade) {
+        this.name = name;
+        this.age = age;
+        this.grade = grade;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+public int getGrade() {
+        return grade;
+    }
+}
+
+class Node {
+    Student student;
+    Node next;
+
+    public Node(Student student) {
+        this.student = student;
+        this.next = null;
+    }
+}
+
+public class StudentLinkedList {
+    private Node head;
+
+    public void addStudent(Student student) {
+        Node newNode = new Node(student);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+    }
+
+public void printAllStudents() {
+        Node current = head;
+        while (current != null) {
+            System.out.println("Name: " + current.student.getName());
+            System.out.println("Age: " + current.student.getAge());
+            System.out.println("Grade: " + current.student.getGrade());
+            System.out.println();
+            current = current.next;
+        }
+    }
+
+    public void printStudentsAboveGrade(int threshold) {
+        Node current = head;
+        while (current != null) {
+            if (current.student.getGrade() > threshold) {
+                System.out.println("Name: " + current.student.getName());
+                System.out.println("Age: " + current.student.getAge());
+                System.out.println("Grade: " + current.student.getGrade());
+                System.out.println();
+            }
+            current = current.next;
+        }
+    }
+
+    public static void main(String[] args) {
+        StudentLinkedList studentList = new StudentLinkedList();
+// Add students to the linked list
+        studentList.addStudent(new Student("John", 20, 85));
+        studentList.addStudent(new Student("Alice", 22, 95));
+        studentList.addStudent(new Student("Mike", 21, 75));
+        studentList.addStudent(new Student("Sarah", 23, 80));
+
+        // Print all students
+        System.out.println("All Students:");
+        studentList.printAllStudents();
+
+        // Print students with grades above a certain threshold
+        int threshold = 80;
+        System.out.println("Students with Grades Above " + threshold + ":");
+        studentList.printStudentsAboveGrade(threshold);
+    }
+}
+
+
+  Exercise: 5
+
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class RoundRobinScheduler {
+    private Stack<String> scheduleStack;
+    private Queue<String> datingQueue;
+
+    public RoundRobinScheduler() {
+        scheduleStack = new Stack<>();
+        datingQueue = new LinkedList<>();
+    }
+
+    public void addLadyFriend(String ladyFriend) {
+        datingQueue.add(ladyFriend);
+    }
+
+    public void generateSchedule() {
+        int numLadyFriends = datingQueue.size();
+        int numDays = numLadyFriends * 2;  // Each lady friend gets two dates
+
+        for (int day = 1; day <= numDays; day++) {
+            String currentLadyFriend = datingQueue.poll();
+            scheduleStack.push(currentLadyFriend);
+
+            if (day % numLadyFriends == 0) {
+                while (!scheduleStack.isEmpty()) {
+                    String scheduledLadyFriend = scheduleStack.pop();
+                    System.out.println("Day " + day + ": John is dating " + scheduledLadyFriend);
+                    datingQueue.add(scheduledLadyFriend);
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        RoundRobinScheduler scheduler = new RoundRobinScheduler();
+
+        // Add lady friends to the scheduler
+        scheduler.addLadyFriend("Friend 1");
+        scheduler.addLadyFriend("Friend 2");
+        scheduler.addLadyFriend("Friend 3");
+        scheduler.addLadyFriend("Friend 4");
+        scheduler.addLadyFriend("Friend 5");
+        scheduler.addLadyFriend("Friend 6");
+        scheduler.addLadyFriend("Friend 7");
+        scheduler.addLadyFriend("Friend 8");
+        scheduler.addLadyFriend("Friend 9");
+        scheduler.addLadyFriend("Friend 10");
+
+        // Generate and print the schedule
+        scheduler.generateSchedule();
+    }
+}
+In this updated version, we've added four more lady friends, so now we have a total of ten friends. We'll run the scheduling algorithm for these ten friends.
+
+When you run this updated program, you will see output similar to the following:
+
+Day 10: John is dating Friend 1
+Day 10: John is dating Friend 2
+Day 10: John is dating Friend 3
+Day 10: John is dating Friend 4
+Day 10: John is dating Friend 5
+Day 10: John is dating Friend 6
+Day 10: John is dating Friend 7
+Day 10: John is dating Friend 8
+Day 10: John is dating Friend 9
+Day 10: John is dating Friend 10
+Day 20: John is dating Friend 10
+Day 20: John is dating Friend 9
+Day 20: John is dating Friend 8
+Day 20: John is dating Friend 7
+Day 20: John is dating Friend 6
+Day 20: John is dating Friend 5
+Day 20: John is dating Friend 4
+Day 20: John is dating Friend 3
+Day 20: John is dating Friend 2
+Day 20: John is dating Friend 1
